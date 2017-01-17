@@ -1,6 +1,5 @@
 class ContactMailer < ActionMailer::Base
   default to: 'svendvalera@gmail.com'
-end
 
   def contact_email(name, email, body)
     @name = name
@@ -9,6 +8,5 @@ end
     
     mail(from: email, subject: 'Contact Form Message')
   end
-
 end
   

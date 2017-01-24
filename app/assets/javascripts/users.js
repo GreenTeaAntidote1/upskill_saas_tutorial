@@ -1,8 +1,9 @@
 /* global $, Stripe */
 //Document ready
-$(document).on('turbolinks:load'), function(){
+$(document).on('turbolinks:load', function(){
   var theForm = $('#pro_form');
-  var submitBtn = $('#form-submit-btn');
+  var submitBtn = $('#form-signup-btn');
+  
   // Set Stripe public key
   Stripe.setPublishableKey( $('meta[name="stripe-key"]').attr('content') );
   
@@ -50,9 +51,7 @@ $(document).on('turbolinks:load'), function(){
         exp_month: expMonth,
         exp_year: expYear
       }, stripeReponseHandler);
-    
     }
-    
     
     return false;
   });
@@ -63,9 +62,9 @@ $(document).on('turbolinks:load'), function(){
     var token = response.id;
     
     // Inject card token in hidden field
-    theForm.append( $('<input type="hidden", name="user[stripe_card_token]">').val(token) );
+    theForm.append( $('<input type="hidden" name="user[stripe_card_token]">').val(token) );
   
     //Submit form to our rails app.
     theForm.get(0).submit();
   }
-};
+});
